@@ -15,8 +15,9 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     <UniformGrid Columns="3">
-        <StackPanel IsVisible="{Binding Primerformulario}" HorizontalAlignment="Center">
-            <TextBlock Text="Formulario"
+       <Border BorderThickness="5" Padding="0" BorderBrush="Blue" CornerRadius="6">
+        <StackPanel IsVisible="{Binding Primerformulario}" HorizontalAlignment="Center" >
+            <TextBlock Text="Formulario de Registro"
                        HorizontalAlignment="Center"
                        FontWeight="Bold"
                        FontSize="30"/>
@@ -40,12 +41,20 @@
                       HorizontalAlignment="Center" Margin="5,0,0,0" Name="condiciones"/>
             <CheckBox Content="Marque si es autonomo o lo fue en su momento"    
                       HorizontalAlignment="Center" Margin="28,0,0,10" Name="autonomo"/>
-            <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="ENVIAR" 
-                    Command="{Binding QuitarPrimerFormularioCommand}" CommandParameter="{Binding ElementName=autonomo }" />       
+            <Border BorderThickness="2" Background="Brown" BorderBrush="Black" 
+                    Width="100" CornerRadius="2"
+                    >
+                <Button  Width="100" VerticalAlignment="Center" HorizontalAlignment="Center" Content="ENVIAR" 
+                         HorizontalContentAlignment="Center"
+                        Command="{Binding QuitarPrimerFormularioCommand}" CommandParameter="{Binding ElementName=autonomo }" />       
+            </Border>
         </StackPanel>
-        <StackPanel>
-            <ComboBox ItemsSource="{Binding Empresas}" />
-            <ListBox ItemsSource="{Binding Empresas}">
+       </Border>
+        
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Empresas asociadas a nuestro servicio" FontSize="20" HorizontalAlignment="Center" Margin="10" FontFamily="comic sans ms"/>
+            <ListBox ItemsSource="{Binding Empresas}" BorderThickness="3" Margin="5,15,15,5"
+                     BorderBrush="Blue">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -65,15 +74,27 @@
                                            Text="{Binding nombreEmpresa}"/>
                                 <TextBlock HorizontalAlignment="Center"
                                            Text="{Binding direccion}"/>
-                                <TextBlock HorizontalAlignment="Center"
-                                           Text="{Binding numEmpleados}"/>
-                                <TextBlock HorizontalAlignment="Center"
-                                           Text="{Binding telefono}"/>
+                               <StackPanel Orientation="Horizontal">
+                                   <TextBlock Text="Num de Empleados: "/>
+                                   <TextBlock HorizontalAlignment="Center"
+                                              Text="{Binding numEmpleados}"/>
+                               </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Telf de la Empresa: "/>
+                                    <TextBlock HorizontalAlignment="Center"
+                                               Text="{Binding telefono}"/>
+                                </StackPanel>
                             </StackPanel>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ListBox>
+            
+        </StackPanel>
+        <StackPanel IsVisible="{Binding Promocion}" Orientation="Vertical">
+            <TextBlock Text="REGISTRATE PARA DISFRUTAR DE LAS VENTAJAS" FontSize="20"/>
+            <Image Source="../Assets/avalonia-logo.ico" Height="100" Width="250"/>
+            <Button Content="REGISTRATE YA" Command="{Binding SegundaOportunidadCommand}" HorizontalAlignment="Center" FontSize="50"/>
         </StackPanel>
         <StackPanel IsVisible="{Binding Segundoformulario}">
             <TextBlock Text="Formulario para autonomos" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"/>
@@ -94,6 +115,7 @@
                 <TextBox HorizontalAlignment="Center" Margin="5" Text="{Binding Empresa.telefono}" Width="150"/>
             </StackPanel>
             <Button Content="Enviar" HorizontalAlignment="Center" Command="{Binding MostrarEmpresasCommand}"/>
+            <Button Content="Cancelar" HorizontalAlignment="Center" Command="{Binding SegundaOportunidadCommand}"/>
         </StackPanel>
     </UniformGrid>
 
