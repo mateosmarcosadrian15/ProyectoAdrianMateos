@@ -15,32 +15,82 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     <UniformGrid Columns="3">
-       <Border BorderThickness="5" Padding="0" BorderBrush="Blue" CornerRadius="6">
-        <StackPanel IsVisible="{Binding Primerformulario}" HorizontalAlignment="Center" >
+        <StackPanel IsVisible="{Binding Perfil}" Height="350" >
+            <Border
+                Background="Blue"
+                BoxShadow="10 10 10 2 DarkGray"
+                >
+                <StackPanel >
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Text="Usuario:" HorizontalAlignment="Center" FontSize="25"
+                                               Margin="20 0 5 0"/>
+                                <TextBlock HorizontalAlignment="Center"
+                                           Text="{Binding Personas[0].nombre}"
+                                           FontSize="25"
+                                           Margin="5 0 0 0"
+                                />
+                                <TextBlock HorizontalAlignment="Center"
+                                           Text="{Binding Personas[0].apellido}"
+                                           FontSize="25"
+                                           Margin="5 0 0 0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Correo:" 
+                                               FontSize="25" 
+                                               Margin="20 0 5 0"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock HorizontalAlignment="Center"
+                                               Text="{Binding Personas[0].email}"
+                                               FontSize="25"
+                                               Margin="5 0 0 0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Telefono:"
+                                               Margin="20 0 5 0 "
+                                               FontSize="25" HorizontalAlignment="Center"/>    
+                                <TextBlock HorizontalAlignment="Center"
+                                           Text="{Binding Personas[0].telefono}" 
+                                           FontSize="25"
+                                           Margin="5 0 0  0"/>
+                                </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <Border BorderThickness="10" Padding="1" 
+                BoxShadow="10 10 5 2 DarkGray"
+                CornerRadius="1" Background="Blue" IsVisible="{Binding Primerformulario}">
+        <StackPanel Background="Blue" IsVisible="{Binding Primerformulario}" HorizontalAlignment="Center" Height="350">
             <TextBlock Text="Formulario de Registro"
                        HorizontalAlignment="Center"
                        FontWeight="Bold"
                        FontSize="30"/>
             <StackPanel Orientation="Horizontal">         
                 <TextBlock Text="Nombre:" Margin="35,0,0,0" />
-                <TextBox Width="150" Height="5" Margin="15,0,0,5"/>
+                <TextBox Width="150" Height="5" Margin="15,0,0,5"
+                         Text="{Binding Persona.nombre}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">         
                 <TextBlock Text="Apellidos:" Margin="35,0,0,0"  />
-                <TextBox Width="150" Height="5"  Margin="7,0,0,5"/>
+                <TextBox Width="150" Height="5"  Margin="7,0,0,5" 
+                         Text="{Binding Persona.apellido}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">         
                 <TextBlock Text="E-mail:" Margin="35,0,0,0" />
-                <TextBox Width="150" Height="5" Margin="25,0,0,5"/>
+                <TextBox Width="150" Height="5" Margin="25,0,0,5"
+                         Text="{Binding Persona.email}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">         
                 <TextBlock Text="Telefono:"  Margin="35,0,0,0" />
-                <TextBox Width="150" Height="5" Margin="10,0,0,10"/>
+                <TextBox Width="150" Height="5" Margin="10,0,0,10"
+                         Text="{Binding Persona.telefono}"/>
             </StackPanel>
             <CheckBox Content="Aceptar terminos y condiciones" 
                       HorizontalAlignment="Center" Margin="5,0,0,0" Name="condiciones"/>
             <CheckBox Content="Marque si es autonomo o lo fue en su momento"    
                       HorizontalAlignment="Center" Margin="28,0,0,10" Name="autonomo"/>
+            <TextBlock Text="{Binding Mensaje}"
+                       HorizontalAlignment="Center"
+                       FontSize="15" Foreground="Red"/>
             <Border BorderThickness="2" Background="Brown" BorderBrush="Black" 
                     Width="100" CornerRadius="2"
                     >
@@ -54,7 +104,7 @@
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Empresas asociadas a nuestro servicio" FontSize="20" HorizontalAlignment="Center" Margin="10" FontFamily="comic sans ms"/>
             <ListBox ItemsSource="{Binding Empresas}" BorderThickness="3" Margin="5,15,15,5"
-                     BorderBrush="Blue">
+                     BorderBrush="Blue" Height="650" >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -66,7 +116,7 @@
                         <Border Margin="0" CornerRadius="10"
                                 Padding="15"
                                 BorderBrush="Gray"
-                                BoxShadow="10 10 5 2 DarkGray"
+                                BoxShadow="10 10 5 2 LightGray"
                                 BorderThickness="1">
                             
                             <StackPanel>
@@ -96,27 +146,57 @@
             <Image Source="../Assets/avalonia-logo.ico" Height="100" Width="250"/>
             <Button Content="REGISTRATE YA" Command="{Binding SegundaOportunidadCommand}" HorizontalAlignment="Center" FontSize="50"/>
         </StackPanel>
-        <StackPanel IsVisible="{Binding Segundoformulario}">
-            <TextBlock Text="Formulario para autonomos" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"/>
-            <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Nombre de la empresa: " HorizontalAlignment="Center" Margin="5"/>
-            <TextBox Margin="5" HorizontalAlignment="Center" Text="{Binding Empresa.nombreEmpresa}" Width="150"/>
+        <Border BorderThickness="10" Padding="0" 
+                BoxShadow="-10 10 5 2 LightGray"
+                CornerRadius="1" Background="Blue" IsVisible="{Binding Segundoformulario}">
+        <StackPanel IsVisible="{Binding Segundoformulario}" 
+                    HorizontalAlignment="Center" Height="380" >
+            <TextBlock Text="Formulario para autonomos" HorizontalAlignment="Center" 
+                       FontSize="30" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Nombre de la empresa: " HorizontalAlignment="Center"
+                       Margin="5 15 5 0"/>
+            <TextBox Margin="3 10 0 0" HorizontalAlignment="Center" 
+                     Text="{Binding Empresa.nombreEmpresa}" Width="150"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Numero de Empleados: " HorizontalAlignment="Center" Margin="5" />
-                <NumericUpDown Minimum="5" Maximum="1000" Value="{Binding Empresa.numEmpleados}"  Width="110" Height="15"  />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Numero de Empleados: " HorizontalAlignment="Center" 
+                           Margin="5 15 5 0" />
+                <NumericUpDown Minimum="5" Maximum="1000" 
+                               Value="{Binding Empresa.numEmpleados}"  
+                               Width="150" Height="15" Margin="3 10 0 0" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Direccion de la empresa" HorizontalAlignment="Center" Margin="5"/>
-                <TextBox HorizontalAlignment="Center" Margin="5" Text="{Binding Empresa.direccion}" Width="150"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Direccion de la empresa:" HorizontalAlignment="Center" 
+                           Margin="5 15 5 0"/>
+                <TextBox HorizontalAlignment="Center" 
+                         Margin="0 10 0 0 " 
+                         Text="{Binding Empresa.direccion}" Width="150"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Tlf de la empresa" HorizontalAlignment="Center" Margin="5"/>
-                <TextBox HorizontalAlignment="Center" Margin="5" Text="{Binding Empresa.telefono}" Width="150"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Tlf de la empresa:" 
+                           HorizontalAlignment="Center" Margin="5 15 3 0"/>
+                <TextBox HorizontalAlignment="Center" 
+                         Margin="45 10 0 50" 
+                         Text="{Binding Empresa.telefono}" Width="150"/>
             </StackPanel>
-            <Button Content="Enviar" HorizontalAlignment="Center" Command="{Binding MostrarEmpresasCommand}"/>
-            <Button Content="Cancelar" HorizontalAlignment="Center" Command="{Binding SegundaOportunidadCommand}"/>
+            <TextBlock Text="{Binding Mensaje}" HorizontalAlignment="Center"
+                       FontSize="15" Foreground="Red"/>
+            <Border BorderThickness="2" Background="Brown" BorderBrush="Black" 
+                    Width="100" CornerRadius="2" 
+            >
+            <Button  Width="100" 
+                     Content="Enviar" HorizontalAlignment="Center"
+                     Command="{Binding MostrarEmpresasCommand}"/>
+            </Border>
+            <Border BorderThickness="2" Background="Brown" BorderBrush="Black" 
+                    Width="100" CornerRadius="2"
+            >
+            <Button  Content="Cancelar" Width="100" HorizontalAlignment="Center" 
+                    Command="{Binding VolverAlPrincipioCommand}"/>
+            </Border>
         </StackPanel>
+            </Border>
     </UniformGrid>
 
 </Window>
