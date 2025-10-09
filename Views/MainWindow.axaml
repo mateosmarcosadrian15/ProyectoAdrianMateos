@@ -85,8 +85,7 @@
                 <TextBox Width="150" Height="5" Margin="10,0,0,10"
                          Text="{Binding Persona.telefono}"/>
             </StackPanel>
-            <CheckBox Content="Aceptar terminos y condiciones" 
-                      HorizontalAlignment="Center" Margin="5,0,0,0" Name="condiciones"/>
+           
             <CheckBox Content="Marque si es autonomo o lo fue en su momento"    
                       HorizontalAlignment="Center" Margin="28,0,0,10" Name="autonomo"/>
             <TextBlock Text="{Binding Mensaje}"
