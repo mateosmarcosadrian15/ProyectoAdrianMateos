@@ -20,8 +20,9 @@
                 Background="Blue"
                 BoxShadow="10 10 10 2 DarkGray"
                 >
-                <StackPanel >
-                                <StackPanel Orientation="Horizontal" >
+                <StackPanel 
+                    >
+                    <StackPanel Orientation="Horizontal" >
                                     <TextBlock Text="Usuario:" HorizontalAlignment="Center" FontSize="25"
                                                Margin="20 0 5 0"/>
                                 <TextBlock HorizontalAlignment="Center"
@@ -143,7 +144,7 @@
         </StackPanel>
         <StackPanel IsVisible="{Binding Promocion}" Orientation="Vertical">
             <TextBlock Text="REGISTRATE PARA DISFRUTAR DE LAS VENTAJAS" FontSize="20"/>
-            <Image Source="../Assets/avalonia-logo.ico" Height="100" Width="250"/>
+            <Image Source="avares://ProyectoAdrianMateos/Assets/emoji2.png" Height="100" Width="250"/>
             <Button Content="REGISTRATE YA" Command="{Binding SegundaOportunidadCommand}" HorizontalAlignment="Center" FontSize="50"/>
         </StackPanel>
         <Border BorderThickness="10" Padding="0" 

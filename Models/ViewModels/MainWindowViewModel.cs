@@ -14,6 +14,7 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty] public bool segundoformulario = false;
     [ObservableProperty] public bool lista = false;
     [ObservableProperty] public bool promocion = false;
+    [ObservableProperty] public int contador = 0;
     [ObservableProperty] public bool perfil = false;
     [ObservableProperty]public Empresas empresa = new();
     [ObservableProperty] private ObservableCollection<Empresas> empresas = new();
@@ -52,6 +53,7 @@ public partial class MainWindowViewModel : ViewModelBase
             persona.telefono = Persona.telefono;
             persona.email = Persona.email;
             Personas.Add(persona);
+            
             if (Primerformulario)
             {
                 Primerformulario = false;
@@ -60,11 +62,13 @@ public partial class MainWindowViewModel : ViewModelBase
             else
             {
                 Primerformulario = true;
+                
                 lista = false;
             }
             if (parametro.IsChecked == true)
             {
                 Segundoformulario = true;
+                Perfil = true;
             }
             else
             {
@@ -86,11 +90,14 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             Primerformulario = true;
             Promocion = false;
+            Perfil = false;
+            Contador++;
         }
         else
         {
             Primerformulario = false;
             Promocion = true;
+            Perfil = false;
         }
     }
 
